@@ -20,4 +20,4 @@
 ### Using JavaScript:  
 
 * **Inline**  
-  * <button id="hellobutton" onclick="alert('HelloWorld')">Click Me</button>  
+&emsp;`<button id="hellobutton" onclick="alert('Hello World')">Click Me</button>`  
