@@ -1,4 +1,4 @@
-# <center> JavaScript </center>  
+# <centre> JavaScript </centre>  
 
 * Used for functionality / behaviour for a web page, DOM manipulation. General purpose language  
 
