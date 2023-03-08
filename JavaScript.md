@@ -1,4 +1,4 @@
-# <centre> JavaScript </centre>  
+# <p style="text-align: center;"> JavaScript </p>  
 
 * Used for functionality / behaviour for a web page, DOM manipulation. General purpose language  
 
