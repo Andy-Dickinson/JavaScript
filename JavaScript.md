@@ -137,6 +137,9 @@
 
 ### Functions  
 
+Functions declared outside an object (and variables declared outside a function) are **global**  
+Global variables and functions can be accessed via the window object as a property  
+
 Can declare by 1 of the following:  
 1. `function add(x,y) { return x + y; };`  
 2. `var add = function(x,y) { return x + y; };`  
@@ -222,10 +225,39 @@ Click `console` at top
 * Can be within a script:  
 `console.log(variable/value);`  
 * Or after an event:  
-  `<p><a href="#" onClick="console.log('Hello World')">Click Me</a></p>`  
+  `<p><a href="#" onClick="console.log('Hello World')">Click Me</a></p>` 
+Pass styles to log:  
+![log styles](Images/loggingStyles.png)  
+##### assert/trace:  
+Can also use `assert()` and `trace()` to debug 
+##### time:  
+Time with `console.time('label')` (time can be replaced with `timeLog('label', 'data')` or `timeEnd('label')` )  
+##### count:  
+`console.count()` can be used in a function, option to pass a variable as parameter  
+
+#### Errors, warnings and info  
+Can log errors, warnings and info as follows:  
+![errors&warnings](Images/errors&warnings.png)  
 
 #### Set breakpoint  
 keyword **debugger** stops executing before it executes the following lines of code  
 `let x = 15 * 5;`  
 `debugger;`  
 `document.getElementById("demo").innerHTML = x;`  
+
+---  
+
+### The Window Object  
+Represents an open browser window which contains a DOM document  
+Global object, always in scope or has "global scope"  
+
+![The Window Object](Images/windowObject.png)  
+
+Global variables and functions can be accessed via the window object as a property  e.g.:  
+`var daka = “more daka”;`  
+`daka === window.daka;`  
+`// This will evaluate to true if the daka variable is available via the window object`  
+
+`function hi() {console.log(“hi”);}`  
+`window.hi === hi;`  
+`// Will evaluate to true for the same reasons as above`  
