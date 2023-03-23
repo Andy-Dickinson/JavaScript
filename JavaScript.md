@@ -290,6 +290,7 @@ Delete:
 * Uses browsers global variables (sessionStorage & localStorage)  
 * Only stores strings (other datatypes automatically converted to strings)  
 * Single strings can be limiting, so better to turn JSON object into string and then store  
+* **MUST CHECK** if web storage is supported by browser first when using (try/catch, add test item, remove test item, return true)
 
 ##### sessionStorage -  
 * Per origin/window/tab, limited to **lifetime of window**  
