@@ -261,3 +261,112 @@ Global variables and functions can be accessed via the window object as a proper
 `function hi() {console.log(“hi”);}`  
 `window.hi === hi;`  
 `// Will evaluate to true for the same reasons as above`  
+
+---  
+
+### Client-Side Storage  
+
+#### Cookies  
+* Designed for maintaining information about **state**  
+* Can be used to recored activity (where clicked, credentials/log-in status, history)  
+* A single string transmitted in HTTP headers during client-server communication  
+
+Create:  
+`document.cookie = "username=Andy";`  
+
+Retrieve:  
+* Store in a variable  
+`var x = document.cookie;`  
+
+Update:  
+* Overwrite existing cookie  
+* `document.cookie = "username=Andrew";`  
+
+Delete:  
+* Don't explicitly delete, just set expiry parameter  
+`document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";`  
+
+#### DOM Storage  
+* Uses browsers global variables (sessionStorage & localStorage)  
+* Only stores strings (other datatypes automatically converted to strings)  
+* Single strings can be limiting, so better to turn JSON object into string and then store  
+
+##### sessionStorage -  
+* Per origin/window/tab, limited to **lifetime of window**  
+* Enables separate instances of same web application to run in different windows without intefering with each other  
+
+Store value for rest of session:  
+`sessionStorage.setItem('key','value');`  
+
+Retrieve value:  
+`alert(sessionStorage.getItem('key'));`  
+
+##### localStorage -  
+* Per origin (combination of protocol, hostname, port number)  
+* Availiable to all scripts loaded from pages with the same origin  
+* **Persistent** after browser closes  
+
+Store value beyond current session:  
+`localStorage.setItem('key','value');`  
+OR  
+`localStorage.setItem('key',JSON.stringify({name:'value'}));`  
+
+Retrive value:  
+`alert(localStorage.getItem('key'));`  
+OR  
+`alert(JSON.parse(localStorage.getItem('key')).name);`  
+
+#### Indexed DB  
+* Recommended standard for a low-level browser API for client-side storage of a local, transactional database  
+* Enables sites to "permanently" collect and save large amounts of structured data  
+* NoSQL storage - JSON object collections with indices  
+* Aimed at browser implemented functions (such as bookmarks) and web applications (like email clients)  
+* **OVERKILL** for many use cases where DOM storage or alternatives are more appropriate  
+
+---  
+
+### JSON (Java Script Object Notation)  
+* Standard for describing data - though not for general purpose (use for specific tasks)  
+* Often used to send and recieve data from web-apps  
+* Can **only** be in string format  
+
+#### JSON string  
+* JavaScript objects can be converted into JSON which is stored as a string  
+* JSON data is represented:  
+  * In key/value pairs  
+  * Separated by commas  
+  * Curly braces hold objects  
+  * Square brackets hold arrays  
+
+* **Keys** must be **strings** in double quotes  
+* **Values** must be either:  
+  * Strings  
+  * Numbers  
+  * An object  
+  * An array (can contain lists of dictionaries)  
+  * A boolean  
+  * null  
+
+##### Stringify:
+Convert JS object to JSON string:  
+`obj = {name: "John", age: 30, city: "New York"};`  
+`myJSON = JSON.stringify(obj);`  
+
+Convert array to JSON string:  
+`arr = ["John", "Peter", "Sally", "Jane"];`  
+`myJSON = JSON.stringify(arr);`  
+
+##### Parse:  
+Convert JSON string to JS object:  
+Recieve example JSON string as:  
+`'{"name":"John", "age":30, "city":"New York"}'`  
+`obj = JSON.parse('{"name":"John", "age":30, "city":"New York"}');`  
+OR when contains array:  
+Example JSON string:  
+`text = '["Ford", "BMW", "Audi", "Fiat"]';`  
+`myArr = JSON.parse(text);`  
+
+![JSON railroad](Images/JSON_railroad.png)  
+
+---  
+
