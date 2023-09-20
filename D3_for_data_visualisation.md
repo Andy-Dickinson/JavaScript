@@ -6,6 +6,13 @@ JavaScript (nodes)
 
 ---  
 
+Many D3 **functions** use the following idiom:  
+* When called **with** approrpriate arguments, these functions act as *<u>setters</u>* - setting the corresponding property to the supplied value. Many D3 setters can take an **accessor function** as an argument, which is expected to return a value that will be used to set the property in question  
+* When called **without** arguments, these functions act as *<u>getters</u>* - returning the current value of the property  
+* To entirely <u>*remove*</u> a property, call the appropriate setter while supplying **null** as argument  
+
+---  
+
 * Two methods can **create selections**:  
   `d3.select(selector)` - selection with the first element matching selector  
   `d3.selectAll(selector)` - selection of all elements matching selector
@@ -61,3 +68,9 @@ element that need appending)
   * Has width and height attributes to define the viewport  
 * g (for group) - aggregator element  
   * Useful to apply transformations to a set of elements  
+<br>
+* SVG provides explicit tags for a set of predefined simple shapes.
+Each shape has a set of specific attributes that control size and posi‐
+tion:  
+![svg shapes](./Images/svg_shapes.png)  
+

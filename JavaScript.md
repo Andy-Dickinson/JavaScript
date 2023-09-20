@@ -46,8 +46,9 @@
 
 #### Variables can be declared:  
 
-* Block level using **let**  
-* Function level using **var** or **const**  
+* **Block level** using **`let`**  
+* **Function level** using **`var`**  
+* **Constant** using **`const`**  
 * **NO TYPE** attached, any value can be stored in any variable  
 * *Value* is **undefined** until initialised  
 
@@ -69,6 +70,39 @@
 
 ![Comments](./Images/Comments.png)  
 ![Keywords](./Images/Keywords.png)  
+
+---  
+
+#### Converting Safely Between Strings and Numbers:  
+**<u>String to number:</u>**  
+
+`Number(str)`  
+* If the variable str, after stripping leading and trailing whitespace, is exactly representable as a number, then Number(str) returns a number of the represented value. If any character is encountered that cannot be converted, NaN is returned  
+* Convertible are "123", " 123 ", "1.0", and "1.e3". Not convertible are "123a" and "1-2". The empty string, a string consisting only of whitespace, and the value null are converted to 0. The Boolean values true and false convert to 1 and 0, respectively  
+  
+`parseFloat(str)`  
+* This is a global function, not a member function of an object. After stripping leading whitespace, it converts the string to an equivalent numerical value until it encounters any character that is not convertible, and returns the value up to that point. If no conversion at all took place, a value of NaN is returned. That is, "123a" converts to 123. Boolean values, the empty string, and the value null all convert to NaN  
+
+`+str`  
+* The unary prefix operator + has the same behavior as the Number() function. In arithmetic expressions, it binds tighter than other arithmetic operators: 3 * +"2" evaluates to 6. The unary prefix operator - acts like unary +, but in addition changes the sign of the numeric result. Notice that Number() is more permissive with regard to special values (such as the empty string, null, and the Booleans), but that parseFloat() is more permissive with regard to trailing nonconvertible characters. All three methods convert undefined to NaN  
+
+**<u>Number to string:</u>**  
+
+`String(num)`  
+* Returns a string representation of its argument. Note that no string formatting is available — for example, it is not possible to restrict the number of digits to the right of the decimal point. The values null, true, and false convert to the strings "null", "true", and "false".  
+  
+`"" + num` or `'' + num`  
+* An equivalent shorthand for `String(num)`  
+
+`num.toString()`  
+* If num is a variable, with a value that is neither null nor undefined, then the toString() member function will return a string representation of that value. Attempting to invoke `toString()` on a numeric literal (as in `1.toString()`) will lead to a syntax error, while attempting to invoke toString on null or undefined will lead to a runtime error. A receiver value of NaN is permitted and leads to the result "NaN".  
+* Method `toString()` is also available on **all objects**; it is called (usually implicitly) to obtain a string representation of the object. However, its default implementation does not return a descriptive string uniquely identifying the object, but instead returns a generic constant (It is therefore not possible to use objects directly as keys in hashmaps.)  
+
+
+**<u>CAUTION:</u>**  
+* Never use the `Number()` or `String()` functions together with the `new` keyword. Doing so will not create primitive types (numbers or strings) but “wrapper objects” with different behavior.  
+* The function `parseInt(str, radix)` converts a string to an integer, using the specified radix (which must be between 2 and 36). The function stops when encountering a nonconvertible character, hence it may give incorrect results if the string is given in exponential notation (because of the e in exponential notation).  
+
 
 ---  
 
@@ -146,6 +180,38 @@ Can declare by 1 of the following:
 3. `var add = new Function('x','y','return x + y');`  
 
 ![Objects](./Images/Objects.png)  
+<br>
+#### Arrow functions:  
+* Simplify the definition of small anonymous functions  
+* Enclose the parameters in parentheses and the function body in
+braces:
+`(a, b, c) => { statements }`  
+* If there are no parameters, use empty parentheses:  
+`() => { statements }`  
+
+---  
+
+#### Objects  
+
+* The preferred way to create an object (instance) is through
+an object literal:  
+`var obj = { a: 1,`  
+`b: [ 1, 2, 3 ],`  
+ `c: function(x) { return x*x }`  
+ `};`  
+* Note the specific syntax of object literals (colons between key and
+value, commas between different entries). A missing comma (or a
+semicolon in place of a comma) can lead to obscure parsing errors 
+<br>
+* The members of an object are accessible through **dot notation and
+bracket notation**. Both forms are equivalent, except that dot nota‐
+tion requires the key to be a valid JavaScript identifier (a sequence of
+alphanumeric characters, including _ and $, not starting with a
+digit), whereas bracket notation allows any string:  
+`obj.a += 2;` OR `obj["a"] += 2;`  
+`obj.f(3);` OR `obj["f"](3);`  
+
+
 
 ---  
 
