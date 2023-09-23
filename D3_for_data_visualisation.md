@@ -58,6 +58,78 @@ element that need appending)
 
 ---  
 
+#### D3 Scale  
+
+[D3 Scale Documentation](https://github.com/d3/d3-scale)  
+
+* Module that provides a set of constructors for scale functions (Scales data to pixels)  
+* Each scale function maps from an **input domain** to an **output range**  
+![d3 scale functions](./Images/d3_scale_functions.png)  
+General structionr:  
+`d3.scale(domain, range);`  
+* Update seperately later:
+&emsp;`scale.domain(newDomain);`  
+&emsp;`scale.range(newRange);`  
+* For:
+  * **continiuouse values** `domain` and `range` are an array of two elements, the minimum and maximum values  
+  * **descrete values** `domain` and `range` are an array of all possible values  
+* Returns a scale function which can be used to get the value in the range given a value in the domain `scale(domainValue) -> rangeValue`  
+<br>  
+**Linear Scale:**  
+![linear scale](images/linear_scale.png)  
+**Square Root Scale:**  
+![square root scale](images/square_root_scale.png)  
+**Log Scale:**  
+![log scale](images/log_scale.png)  
+**Band Scale:**  
+![band scale](images/band_scale.png)  
+**Point Scale:**  
+![point scale](images/point_scale.png)  
+
+<br>  
+
+#### D3 Axis  
+
+[D3 Axis Documentation](https://github.com/d3/d3-axis)  
+
+* Module that lets you **render the scales** created by D3 scale  
+
+First, create an axis generator:  
+`let axisGen = d3.axis(scale);`  
+Then call the generator on a selection (axis DOM elements will be automatically appended):  
+`selection.call(axisGen);`  
+<br>  
+**Axis Bottom:**  
+![axis bottom](images/axis_bottom.png)  
+**Axis Right:**  
+![axis right](images/axis_right.png)  
+**Axis Left:**  
+![axis left](images/axis_left.png)  
+**Axis Top:**  
+![axis top](images/axis_top.png)  
+
+##### Customise axes:  
+
+`axis.tickValues(valuesArray);`  
+* Sets values of ticks (axis interval labels)  
+
+`axis.tickFormat(formatter);`  
+* Format the tick values to be readable (e.g. with dates, large numbers, or numbers with units)  
+
+`axis.ticks(count);`  
+* Set the number of ticks to render (with regular intervales)  
+
+`axis.ticks(interval);`  
+* Set the time intervals between ticks on a time axis  
+
+---  
+
+#### Array Operations  
+
+![array operations](images/array_operations.png)  
+
+---  
+
 **SVG** - Scalable Vector Graphics  
 * Markup language (XML based) for 2D vector graphics  
 * Manipulated in JavaScript  
@@ -73,4 +145,13 @@ element that need appending)
 Each shape has a set of specific attributes that control size and posi‐
 tion:  
 ![svg shapes](./Images/svg_shapes.png)  
+<br>
+#### Colours
+* SVG does not have a color attribute, instead you must use **fill
+and stroke**  
+* The **default** value for **fill is black**; the **default** value for **stroke is none**. (This means that setting fill="none" on an element
+without also updating its stroke attribute makes it invisible!)  
+![presentational attributes 1](./Images/presentational_attributes1.png)  
+![presentational attributes 2](./Images/presentational_attributes2.png)
+
 
