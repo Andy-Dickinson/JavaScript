@@ -167,6 +167,11 @@
 &emsp;`...`  
 `} while (condition);`  
 
+#### JavaScript ternary operator  
+Takes the format:   
+`condition?value_if_true:value_if_false`  
+* This can be used to **style elements under certain conditions**  
+
 ---  
 
 ### Functions  
