@@ -106,7 +106,8 @@ General structionr:
 
 * Module that lets you **render the scales** created by D3 scale 
 * Regardless of orientation, **axes are always rendered at the origin**. To change the position of the axis with respect to the chart, specify a transform attribute on the containing element.
-&emsp;&emsp;`.attr("transform", "translate(0,30)")` (to move axis to coordinates 0,30)
+&emsp;&emsp;`.attr("transform", "translate(0,30)")` (to move axis to coordinates 0,30)  
+* Because the visual axis component consists of many individual SVG elements (for tick marks and labels), it should **always be created inside its own `<g>` container** - Styles and transformations applied to this parent element are inherited by all parts of the axis  
 
 First, create an axis generator:  
 `let axisGen = d3.axis(scale);`  
