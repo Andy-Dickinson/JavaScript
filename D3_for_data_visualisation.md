@@ -108,6 +108,24 @@ When updating a graph because data is only becoming available over time or becau
 4. **Merge the remaining items from the original** selection with the newly created items from the `enter()` selection  
 5. **Update all items** in the combined selection based on the current values of the bound data set  
 
+---  
+
+#### Operating on Elements in a Selection  
+* **Manipulate** aspects of the individual DOM elements contained in the selection  
+* All function arguments are optional (as always in JavaScript). The functions in the table below can be used to **set, get, or clear an attribute** (or property, or style), depending on the value argument:  
+  * If **no value is supplied**, the function **returns the current value** for the first nonnull element in the selection  
+  * If a **null value is supplied**, the **attribute (or property) is removed** from the element  
+  * If a **constant value is supplied and not null**, the **attribute (or property) is set** to the supplied value  
+  * If a **function is supplied**, it is **evaluated for every element in the selection**  
+
+![operating on elements 1](images/operating_on_elements1.png)  
+![operating on elements 2](images/operating_on_elements2.png)  
+
+#### Operating on Selections Themselves  
+* Operates on entire selection (adds, removes, reorders elements)  
+
+![operating on selections1](images/operating_on_selections1.png)  
+![operating on selections2](images/operating_on_selections2.png)  
 
 ---  
 
@@ -311,6 +329,15 @@ Offers several [presets](https://github.com/d3/d3-shape/blob/v3.1.0/README.md#cu
 ![making pie chart](images/making_pieChart.png)  
 
 <hr style="border: 1.5px dashed gray; height: 0.1px;"/>
+
+#### Predefined D3 Symbols  
+* Use with d3.symbol() generator  
+* Does not consume a data set. All you can configure are the symbol type and size  
+* No provisions to fix the position of the symbol on the graph. Instead, all symbols are rendered at the origin, and you use SVG transforms to move them into their final positions  
+![predefined d3 symbols](images/predefined_d3_symbols.png)  
+
+#### Methods of Symbol Generator  
+![methods symbol generator](images/methods_symbol_generator.png)  
 
 #### Colours
 * SVG does not have a color attribute, instead you must use **fill
