@@ -10,6 +10,17 @@ JavaScript (nodes)
 
 ---  
 
+#### CSS Selectors  
+
+[CSS Selectors reference](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors)  
+
+![css selectors 1](images/css_selectors1.png)  
+![css selectors 2](images/css_selectors2.png)  
+* Selector combinations are less commonly used when working with D3, because nested selections provide a more idiomatic alternative  
+e.g., `d3.selectAll( "p" ).selectAll( "b" )`  
+
+---  
+
 Many D3 **functions** use the following idiom:  
 * When called **with** approrpriate arguments, these functions act as *<u>setters</u>* - setting the corresponding property to the supplied value. Many D3 setters can take an **accessor function** as an argument, which is expected to return a value that will be used to set the property in question  
 * When called **without** arguments, these functions act as *<u>getters</u>* - returning the current value of the property  
@@ -27,31 +38,53 @@ Many D3 **functions** use the following idiom:
   `d3.select(selector)` - selection with the first element matching selector  
   `d3.selectAll(selector)` - selection of all elements matching selector
 * If nothing is matched, an empty selection is created  
+  
+![create selections](images/create_selections.png)  
+
 <br>
+
 * Can be **chained**:  
 `mySelection.selectAll(selector)` - access descendants of the DOM node  
 `mySelection.append(tag)` - lets you add a direct child to each elements
 of your selection, and returns these children as a new selection  
+`mySelection.filter(selector)` - similar to selectAll, the selector can be a CSS selector string or an accessor function, if accessor, then must return a Boolean that indicates wheather the current node should be retained in the selection or not  
+* Selection methods nest when chained: any **subsequent selection action will only act on the results of the previous one**  
+
 <br>
+
 * Making a selection:
 ![Making a selection](./Images/making_a_selection.png)  
+
 <br>
+
 * **Binding** data to elements:  
 `mySelection.data(myData, key)` - method for binding myData to
 elements of mySelection. `key` is an accessor to uniquely match data items to DOM elements.
   * Default key is the data indices  
   * Accessor functions essentially declare how to reach part of data objects, 
 e.g., &emsp; d => d.k  
+
 <br>
+
 * **Joining** elements:  
   * Once DOM elements are bound to data entries, we have four possibilities:  
 ![Joining elements](./Images/joining_elements.png)  
 `mySelection.join(…)` - method that gives us access to these three
 sub-selections:  
-  * **enter selection**, for elements to add  
-  * **update selection**, for elements to change  
-  * **exit selection**, for elements to remove  
+  * **enter selection**, for elements to add - DOM elements are created for any unmatched data items  
+  * **update selection**, for elements to change - DOM elements are styled based on the data bound to them  
+  * **exit selection**, for elements to remove - surplus DOM elements (that have no data bound to them) are removed from the graph  
+
+![binding unmatched1](images/binding_unmatched1.png)  
+
+![binding unmatched2](images/binding_unmatched2.png)  
+
+<br>  
+
+
+
 <br>
+
   * **returns** the fully updated selection (enter+update)  
 ![binding & joining](./Images/binding_joining1.png)  
 ![binding & joining](./Images/binding_joining2.png)  
@@ -65,6 +98,16 @@ Adding missing elements and removing extra ones is a **default behaviour**
 element that need appending)  
 
 <br> 
+
+#### General Update Pattern  
+
+When updating a graph because data is only becoming available over time or because the graph must respond to user input. Follow this sequence of steps:  
+1. **Bind new data** to an existing selection of elements  
+2. **Remove any surplus** items that do not have matching data associated anymore (the `exit()` selection)  
+3. **Create and configure all items** associated with data points **that did not exist before** (the `enter()` selection)  
+4. **Merge the remaining items from the original** selection with the newly created items from the `enter()` selection  
+5. **Update all items** in the combined selection based on the current values of the bound data set  
+
 
 ---  
 
@@ -84,7 +127,9 @@ General structionr:
   * **continiuouse values** `domain` and `range` are an array of two elements, the minimum and maximum values  
   * **descrete values** `domain` and `range` are an array of all possible values  
 * Returns a scale function which can be used to get the value in the range given a value in the domain `scale(domainValue) -> rangeValue`  
+
 <br>  
+
 **Linear Scale:**  
 ![linear scale](images/linear_scale.png)  
 **Square Root Scale:**  
@@ -113,7 +158,9 @@ First, create an axis generator:
 `let axisGen = d3.axis(scale);`  
 Then call the generator on a selection (axis DOM elements will be automatically appended):  
 `selection.call(axisGen);`  
+
 <br>  
+
 **Axis Bottom:**  
 ![axis bottom](images/axis_bottom.png)  
 **Axis Right:**  
@@ -150,11 +197,14 @@ Then call the generator on a selection (axis DOM elements will be automatically 
 * Manipulated in JavaScript  
 * Styled in CSS  
 * HTML is for text and input, SVG is for graphics  
-<br>
+
+<br>  
+
 * 'svg' - always the top level element of the graphic  
   * Has width and height attributes to define the viewport  
 * 'g' (for group) - aggregator element  
   * Useful to apply transformations to a set of elements  
+
 <br>
 
 <hr style="border: 1.5px dashed gray; height: 0.1px;"/>
@@ -164,6 +214,7 @@ Then call the generator on a selection (axis DOM elements will be automatically 
 Each shape has a set of specific attributes that control size and posi‐
 tion:  
 ![svg shapes](./Images/svg_shapes.png)  
+
 <br>
 
 <hr style="border: 1.5px dashed gray; height: 0.1px;"/>
