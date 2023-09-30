@@ -223,9 +223,31 @@ Then call the generator on a selection (axis DOM elements will be automatically 
 * 'g' (for group) - aggregator element  
   * Useful to apply transformations to a set of elements  
 
-<br>
+<hr style="border: 1.5px dashed blue; height: 0.1px;"/>  
 
-<hr style="border: 1.5px dashed gray; height: 0.1px;"/>
+#### SVG Transformations  
+
+* Can apply a transform to any SVG element by setting the elements `transform` **attribute**  
+* **Or** human-readable format:
+&emsp; `scale( fx, fy )` - if fy is ommited, fx is ued for both  
+&emsp; `rotate( phi, x, y )` - rotate around (x,y), (0,0) if missing  
+&emsp; `translate( dx, dy )` - moves object  
+  * Can build these up as:  
+&emsp;&emsp; `<rect transform="translate(10,20) scale(2.0) rotate(30)" />`  
+&emsp;&emsp;**NOTE - always applied <u>right to left</u>**  
+* Remember y axis **<u>points down</u>**  
+* Scaling and rotating objects that are **not located at the origin has <u>side effects</u>**, also translation followed by scaling scales the translation:  
+![scale transform effects](images/scale_transform_effects.png)  
+
+**<u>Follow workflow:</u>**  
+1. Create objects only at the origin  
+2. Apply any desired scalings and rotations while the object is still at the origin  
+3. Only then move (translate) the object to its intended location  
+
+Use `<g>` elements to apply transformations to all children. With this, can assemble a complex graphical object from its constitutents, and then move the entire aggregate to its desired location at once  
+
+
+<hr style="border: 1.5px dashed blue; height: 0.1px;"/>  
 
 #### Simple shapes  
 * SVG provides explicit tags for a set of predefined simple shapes.
@@ -233,9 +255,8 @@ Each shape has a set of specific attributes that control size and posi‐
 tion:  
 ![svg shapes](./Images/svg_shapes.png)  
 
-<br>
 
-<hr style="border: 1.5px dashed gray; height: 0.1px;"/>
+<hr style="border: 1.5px dashed blue; height: 0.1px;"/>
 
 #### Complex shapes  
 **Path**:
@@ -263,6 +284,9 @@ tion:
 
 [Properties](https://github.com/d3/d3-shape/blob/v3.1.0/README.md#pies)  
 
+![pie chart methods1](images/pie_chart_methods1.png)  
+![pie chart methods2](images/pie_chart_methods2.png)  
+
 **Stack Generator**:  
 
 `d3.stack` module  
@@ -283,6 +307,11 @@ tion:
   
 [Properties](https://github.com/d3/d3-shape/blob/v3.1.0/README.md#lines)  
 
+##### Line Generator Methods:   
+
+![line generator methods1](images/line_generator_methods1.png)  
+![line generator methods2](images/line_generator_methods2.png) 
+
 **Arc Generator**:  
 `d3.arc` module  
 * Creates SVG paths representing circles arcs (for pie and donut charts)  
@@ -293,6 +322,8 @@ tion:
   * Inner and outer radii values  
 
 [Properties](https://github.com/d3/d3-shape/blob/v3.1.0/README.md#arcs)  
+
+![arc generator methods](images/arc_generator_methods.png)  
 
 Other shape generators:
 * Areas - similar to lines but fills the surface below the curve  
@@ -306,6 +337,7 @@ A function that estimates a continuous range of values between fixed discrete po
 ![curve interpolator](images/curve_interpolator.png)  
 
 Often used with `d3.line` and `d3.area` to inform on the actual path a line (or curve) should take  
+**NOTE - curves are drawn in the <u>order of the points in the dataset</u> (ie. not reordered based on x-axis)**  
 
 Offers several [presets](https://github.com/d3/d3-shape/blob/v3.1.0/README.md#curves):  
 * `d3.curveBasis` & `d3.curveBundle` - B-spline interpolation  
@@ -314,6 +346,10 @@ Offers several [presets](https://github.com/d3/d3-shape/blob/v3.1.0/README.md#cu
 * `d3.curveNatural` - Cubic spline interpolation  
 * `d3.curveStep` - Horizontal and vertical line interpolation  
 * `d3.curveLinear` - pair-wise straight lines  
+  
+`closed` variants are availiable which treat the first and last data points as neighbours  
+  
+![built in curves](images/built_in_curves.png)  
 
 <br>  
 
@@ -328,7 +364,7 @@ Offers several [presets](https://github.com/d3/d3-shape/blob/v3.1.0/README.md#cu
 ![transform for pie chart](images/transform_for_pieChart.png)  
 ![making pie chart](images/making_pieChart.png)  
 
-<hr style="border: 1.5px dashed gray; height: 0.1px;"/>
+<hr style="border: 1.5px dashed blue; height: 0.1px;"/>
 
 #### Predefined D3 Symbols  
 * Use with d3.symbol() generator  
@@ -346,5 +382,65 @@ and stroke**
 without also updating its stroke attribute makes it invisible!)  
 ![presentational attributes 1](./Images/presentational_attributes1.png)  
 ![presentational attributes 2](./Images/presentational_attributes2.png)
+
+---  
+
+#### Preparing Data for Data Visualisation:  
+
+* **Data Collection and Acquisition**: Gather your data from various sources, such as databases, files, or web APIs. Ensure that you have a clear understanding of the data's structure, including its columns, data types, and any missing or inconsistent values.  
+  
+* **Data Cleaning**: Handle missing data: Decide how to deal with missing values (remove rows, impute/infer values, etc.). Remove duplicate records if they exist. Correct any data entry errors or inconsistencies. Convert data types as needed (e.g., converting date strings to datetime objects).  
+  
+* **Data Transformation**: Aggregate or summarize data if necessary (e.g., grouping data by categories or time intervals). Create new derived variables or features that might be useful for analysis. Normalize or standardize data if you're working with different units or scales. Perform any data scaling or dimensionality reduction if required (e.g., PCA).   
+  
+* **Feature Engineering**: Engineer new features that can enhance your analysis or visualization. Consider feature extraction techniques to reduce the dimensionality of high-dimensional data.  
+  
+* **Data Exploration**: Use descriptive statistics and exploratory data analysis (EDA) techniques to gain insights into your data. Create summary statistics, histograms, box plots, and other visuals to understand the distribution and characteristics of your data.  
+  
+* **Data Filtering**: If your dataset is extensive, consider filtering or subsetting the data to focus on specific aspects or subsets of interest.  
+  
+* **Handling Outliers**: Identify and decide how to handle outliers, whether to remove them or transform them.  
+
+* **Data Formatting**: Ensure that your data is in a format suitable for the visualization tool you plan to use. For time-series data, make sure it's sorted chronologically.  
+
+* **Labeling and Categorization**: Assign meaningful labels to columns and data points. Group or categorize data for easier visualization and analysis.  
+  
+* **Data Validation**: Validate that your data preparation steps haven't introduced errors or biases. Perform sanity checks and cross-check data with domain knowledge.  
+  
+* **Data Splitting**: If you're doing machine learning or predictive analytics, split your data into training and testing sets.  
+  
+* **Documentation**: Document all the steps you've taken in preparing the data. This documentation is crucial for reproducibility.  
+
+Once your data is well-prepared following these steps, you can proceed to create data visualizations  
+
+---
+
+#### Assessing data cleanliness:  
+
+* **Missing Values**: Check for missing values in the dataset. Missing values can impact the quality of your analysis, so you should identify and decide how to handle them.  
+
+* **Duplicates**: Look for duplicate rows in the dataset. Duplicate entries can skew your analysis, so it's essential to identify and remove them if necessary.  
+
+* **Outliers**: Check for outliers in numerical columns. Outliers can affect statistical analyses and visualization, so you may need to handle them appropriately.  
+
+* **Data Types**: Ensure that the data types of each column are appropriate for the type of data they contain (e.g., numerical columns should have numeric data types, dates should be in date format, etc.).  
+
+* **Inconsistent Data**: Look for inconsistencies in data entry, such as variations in capitalization, spelling errors, or different units of measurement.  
+
+* **Data Integrity**: Verify that the data makes sense and aligns with your expectations based on the context. For example, ensure that temperature values are within a reasonable range for the given location and time.  
+
+* **Data Format**: Check if the dataset follows a consistent format throughout. Inconsistent formatting can make data analysis more challenging.  
+
+* **Data Range**: Confirm that the dataset covers the expected range of years and months for the given location.  
+
+To perform a more detailed assessment of data cleanliness, you may need to perform specific data quality checks and exploratory data analysis. Additionally, consider your specific analysis goals and whether the data meets the requirements for your project.  
+
+---  
+
+![chart selection diagram](images/chart_selection_diagram.png)  
+
+
+
+
 
 
