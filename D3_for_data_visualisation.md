@@ -10,6 +10,24 @@ JavaScript (nodes)
 
 ---  
 
+#### D3 Dataset functions  
+
+To explore and refine datasets  
+
+##### Statistics:  
+* Each method takes an iterable as first parameter, and an optional accessor function  
+`d3.min(iterable)` - returns minimum value  
+`d3.max(iterable)` - returns maximum value  
+`d3.extent(iterable)` - returns minimum and maximum value in iterable using natural order, undefined if array empty  
+`d3.mean(iterable)` - returns mean (average of all values)  
+`d3.mode(iterable)` - returns mode (most common value)  
+`d3.median(iterable)` - returns median (middel value when in order)  
+`d3.variance(iterable)` - average degree to which each point differs from the mean  
+`d3.deviation(iterable)` - spread of a group of values from the mean (square root of variance)  
+`d3.quantile(iterable, percentile)` - 
+ 
+---  
+
 #### CSS Selectors  
 
 [CSS Selectors reference](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors)  

@@ -46,8 +46,8 @@
 
 #### Variables can be declared:  
 
-* **Block level** using **`let`**  
-* **Function level** using **`var`**  
+* **Block level** using **`let`** - availiable only inside block declared in  
+* **Function level** using **`var`** - availiable throughout the function they are declared in  
 * **Constant** using **`const`**  
 * **NO TYPE** attached, any value can be stored in any variable  
 * *Value* is **undefined** until initialised  
@@ -198,12 +198,16 @@ braces:
 
 #### Objects  
 
+* Collection of values identified with a **key**  
 * The preferred way to create an object (instance) is through
 an object literal:  
 `var obj = { a: 1,`  
 `b: [ 1, 2, 3 ],`  
  `c: function(x) { return x*x }`  
  `};`  
+ OR  
+ `var myObj = new Object();`  
+* Object **keys** MUST be strings   
 * Note the specific syntax of object literals (colons between key and
 value, commas between different entries). A missing comma (or a
 semicolon in place of a comma) can lead to obscure parsing errors 
@@ -217,6 +221,81 @@ digit), whereas bracket notation allows any string:
 `obj.f(3);` OR `obj["f"](3);`  
 
 
+---  
+
+#### Maps  
+
+* Collection of values identified with a **key**  
+`var myMap = new Map([[1, 'one'], [2, 'two'], [3, 'three']]);`  
+* Keys can be anything  
+* Maps are ordered by keys  
+* Maps are iterable  
+
+##### Operations:  
+
+`.size` - the number of entries in the map  
+`.set(key, value)` - sets value for given key  
+`.get(key)` - returns value for given key  
+`.has(key)` - checks if an entry exists with given key  
+`.delete(key)` - deletes the entry with the given key  
+`.clear()` - deletes all entries  
+`.keys()` - returns all the keys  
+`.values()` - returns all the values  
+`.entries()` - returns all key-value pairs  
+`.forEach(callback)` - executes the callback on all entries  
+
+
+---  
+
+#### Sets  
+
+* Colletion of **unique values**  
+`var mySet = new Set([1,2,3,4,1,3]);` **>** `[1,2,3,4]`  
+
+##### Operations:  
+
+`.size` - the number of items in the set  
+`.add(value)` - adds the given value  
+`.has(value)` - checks if the given value exists  
+`.delete(value)` - delets the given value  
+`.clear()` - deletes all items  
+`.forEach(callback)` - executes the callback on all items  
+
+
+
+---  
+
+#### Arrays  
+
+* Collection of values identified with an **index**  
+`var myArray = [];`
+OR
+`var myArray = new Array();`
+Can declare via other object types:  
+`var myArray = Array.from(mySet);`  
+`var myArray = Array.from(myMap)';`  
+
+##### Operations:  
+
+`.length` - the number of elements in the array  
+`.push(value)` - adds a new element at the **end** of the array  
+`.pop()` - removes the **last** element in the array  
+`.shift(value)` - adds a new element at the **start** of the array  
+`.unshift()` - removes the **first** element in the array  
+`.concat(array)` - concatenate the array passed to the existing array  
+`.sort(comparator)` - sorts the array given a comparator function  
+`.reverse()` - reverse the order of the array  
+`.every(test)` - checks if test holds true for **all** elements in the array  
+`.some(test)` - checks if test holds true for **at least one** element  
+`.forEach(callback)` - executes the callback for each element in the array  
+`.map(f)` - returns a new array based on the transformation function f  
+`.filter(test)` - returns a new array with only elements for which the **test is true**  
+`.flat(depth)` - returns a new flatterened array, up to the depth provided  
+`.reduce(f)` - reduceds the array to a single value, given the accumulator f  
+`.join(s)` - creates a string concatenation of the array, joined by the given string  
+
+
+---
 
 ---  
 
