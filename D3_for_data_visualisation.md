@@ -14,17 +14,77 @@ JavaScript (nodes)
 
 To explore and refine datasets  
 
-##### Statistics:  
-* Each method takes an iterable as first parameter, and an optional accessor function  
-`d3.min(iterable)` - returns minimum value  
-`d3.max(iterable)` - returns maximum value  
-`d3.extent(iterable)` - returns minimum and maximum value in iterable using natural order, undefined if array empty  
-`d3.mean(iterable)` - returns mean (average of all values)  
-`d3.mode(iterable)` - returns mode (most common value)  
-`d3.median(iterable)` - returns median (middel value when in order)  
-`d3.variance(iterable)` - average degree to which each point differs from the mean  
-`d3.deviation(iterable)` - spread of a group of values from the mean (square root of variance)  
-`d3.quantile(iterable, percentile)` - 
+##### [Statistics](https://d3js.org/d3-array/summarize):  
+* Each method takes an **iterable as first parameter**, and an **optional accessor function**  
+  * `d3.min(iterable)` - returns minimum value  
+  * `d3.max(iterable)` - returns maximum value  
+  * `d3.extent(iterable)` - returns minimum and maximum value in iterable using natural order, undefined if array empty  
+  * `d3.mean(iterable)` - returns mean (average of all values)  
+  * `d3.mode(iterable)` - returns mode (most common value)  
+  * `d3.median(iterable)` - returns median (middel value when in order)  
+  * `d3.variance(iterable)` - average degree to which each point differs from the mean  
+  * `d3.deviation(iterable)` - spread of a group of values from the mean (square root of variance)  
+  * `d3.quantile(sorted_iterable, quantile)` - iterable must be sorted, quantile should be between 0 and 1. Returns the value that divides the dataset into parts defined by the quantile e.g. `d3.quantile([0,1,2,3,4], (0.25)` > `1`  
+  * `d3.rank(iterable)` - returns the zero-based index of the value if iterable was sorted e.g `d3.rank([5,10,3,7])` > `[1,3,0,2]`  
+  * `d3.sum(iterable)` - returns sum of iterable of numbers, ignores undefined, null and NaN values  
+  * `d3.cumsum(iterable)` - returns cumulative sum of given iterable of numbers as array of same length  
+
+##### [Search](https://d3js.org/d3-array/summarize):  
+* Each method takes an **iterable as first parameter** and an **optional accessor or comparator function**  
+    * `d3.least(iterable)` - similar to min, but can be used with a comparator  
+    * `d3.leastIndex(iterable)` - returns index of the least element  
+    * `d3.greatest(iterable)` - similar to max, but can be used with a comparator  
+    * `d3.greatestIndex(iterable)` - returns index of the greatest element  
+
+##### [Search - Bisectors](https://d3js.org/d3-array/bisect):  
+* Lets you find the closest index to specifc values in an array
+`d3.bisector(accessor/comparator)`  
+
+* Can then use the bisector functions, giving an array to search and a value to search for, with optional lower and upper bounds to restrict the search:  
+`bisector.left`  
+`bisector.right`  
+`bisector.center`  
+
+##### [Transformations - Group](https://d3js.org/d3-array/group)  
+* Aggregates the data by the provided key accessor - if several keys provided, nested aggregation produced  
+* `d3.group(iterable, ...keys)` - groups iterable of values into an InternMap from key to array of value  
+* `d3.groups(iterable, ...keys)` - equivalent to group, but returns an array of [key,value] entries instead of a map  
+* `d3.flatGroup()` - equivalent to group, but returns a flat array of [key0, key1, ..., values] instead of nested maps. Useful for iterating over all groups  
+
+##### [Transformations - Rollup](https://d3js.org/d3-array/group)  
+* Aggregates the data by the provided key accessor, but also reduces the groups into a single value  
+* `d3.rollup(iterable, reduce, ...keys)` - groups and reduces iterable of values into an InternMap from key to reduced value  
+* `d3.rollups(iterable, reduce, ...keys)` - equivalent to rolloup, but returns an array of [key, value] entries instead of a map  
+* `d3.flatRollup(iterable, reduce, ...keys)` - equivalent to rollup, but returns a flat array of [key0, key1, ..., value] instead of nested maps. Useful for iterating over all groups  
+
+##### [Transformations - Bins](https://d3js.org/d3-array/bin)  
+* Bin generator distributes the data into non-overlapping, consecutive intervals, as in histograms. **Initialise bin generator**:  
+&emsp;`d3.bin()`  
+* `bin.value(value)` - if value is specified, sets the value accessor to the specified function or constant and returns the generator. Otherwise returns the value accessor (defaults to the identity function)  
+* `bin.domain(domain)` - if domain is specified, sets the domain accessor to the specified function or array and returns the generator. Otherwise returns the current value accessor (defaults to the extent)  
+* `bin.thresholds(count)` - if threshold is specified, sets the threshold generator to the specified function or array and returns the generator (allows you to set number of bins to create). Otherwise, returns the current threshold generator (default implements Sturges' formula)
+
+##### [Other Transfomations](https://d3js.org/d3-array/transform)  
+
+* `d3.index` / `d3.indexes` - similar to group, but only one entry per key is valid  
+* `d3.groupSort` - creates groups and returns the group keys sorted by a given accessor or comparator  
+* `d3.count` - returns the number of valid number values  
+* `d3.cross` - returns the product of several iterables  
+* `d3.merge` - merges several iterables together  
+* `d3.pairs` - creates pairs of adjacent elements in the array  
+* `d3.permute` permutes the attributes of a source object or elements of a source array  
+* `d3.shuffle` - randomises the order of an array  
+* `d3.zip` - returns an array of arrays, each i<sup>th</sup> array contains the i<sup>th</sup> element from each input array  
+
+##### [Set Operations](https://d3js.org/d3-array/sets)  
+* `d3.difference` - returns the given set, minus elements from other sets  
+* `d3.union` - returns the union of sets (combination of both sets - logical or)  
+* `d3.intersection` - returns the intersection between sets (where sets overlap - logical and)  
+* `d3.superset` - checks if the first set is a superset of the second set  
+* `d3.subset` - checks if the first set is a subset of the second set  
+* `d3.disjoint` - checks if the two sets are disjoint  
+
+
  
 ---  
 

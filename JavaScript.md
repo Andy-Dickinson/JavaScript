@@ -233,16 +233,16 @@ digit), whereas bracket notation allows any string:
 
 ##### Operations:  
 
-`.size` - the number of entries in the map  
-`.set(key, value)` - sets value for given key  
-`.get(key)` - returns value for given key  
-`.has(key)` - checks if an entry exists with given key  
-`.delete(key)` - deletes the entry with the given key  
-`.clear()` - deletes all entries  
-`.keys()` - returns all the keys  
-`.values()` - returns all the values  
-`.entries()` - returns all key-value pairs  
-`.forEach(callback)` - executes the callback on all entries  
+  * `.size` - the number of entries in the map  
+  * `.set(key, value)` - sets value for given key  
+  * `.get(key)` - returns value for given key  
+  * `.has(key)` - checks if an entry exists with given key  
+  * `.delete(key)` - deletes the entry with the given key  
+  * `.clear()` - deletes all entries  
+  * `.keys()` - returns all the keys  
+  * `.values()` - returns all the values  
+  * `.entries()` - returns all key-value pairs  
+  * `.forEach(callback)` - executes the callback on all entries  
 
 
 ---  
@@ -254,12 +254,12 @@ digit), whereas bracket notation allows any string:
 
 ##### Operations:  
 
-`.size` - the number of items in the set  
-`.add(value)` - adds the given value  
-`.has(value)` - checks if the given value exists  
-`.delete(value)` - delets the given value  
-`.clear()` - deletes all items  
-`.forEach(callback)` - executes the callback on all items  
+  * `.size` - the number of items in the set  
+  * `.add(value)` - adds the given value  
+  * `.has(value)` - checks if the given value exists  
+  * `.delete(value)` - delets the given value  
+  * `.clear()` - deletes all items  
+  * `.forEach(callback)` - executes the callback on all items  
 
 
 
@@ -277,22 +277,22 @@ Can declare via other object types:
 
 ##### Operations:  
 
-`.length` - the number of elements in the array  
-`.push(value)` - adds a new element at the **end** of the array  
-`.pop()` - removes the **last** element in the array  
-`.shift(value)` - adds a new element at the **start** of the array  
-`.unshift()` - removes the **first** element in the array  
-`.concat(array)` - concatenate the array passed to the existing array  
-`.sort(comparator)` - sorts the array given a comparator function  
-`.reverse()` - reverse the order of the array  
-`.every(test)` - checks if test holds true for **all** elements in the array  
-`.some(test)` - checks if test holds true for **at least one** element  
-`.forEach(callback)` - executes the callback for each element in the array  
-`.map(f)` - returns a new array based on the transformation function f  
-`.filter(test)` - returns a new array with only elements for which the **test is true**  
-`.flat(depth)` - returns a new flatterened array, up to the depth provided  
-`.reduce(f)` - reduceds the array to a single value, given the accumulator f  
-`.join(s)` - creates a string concatenation of the array, joined by the given string  
+  * `.length` - the number of elements in the array  
+  * `.push(value)` - adds a new element at the **end** of the array  
+  * `.pop()` - removes the **last** element in the array  
+  * `.shift(value)` - adds a new element at the **start** of the array  
+  * `.unshift()` - removes the **first** element in the array  
+  * `.concat(array)` - concatenate the array passed to the existing array  
+  * `.sort(comparator)` - sorts the array given a comparator function  
+  * `.reverse()` - reverse the order of the array  
+  * `.every(test)` - checks if test holds true for **all** elements in the array  
+  * `.some(test)` - checks if test holds true for **at least one** element  
+  * `.forEach(callback)` - executes the callback for each element in the array  
+  * `.map(f)` - returns a new array based on the transformation function f  
+  * `.filter(test)` - returns a new array with only elements for which the **test is true**  
+  * `.flat(depth)` - returns a new flatterened array, up to the depth provided  
+  * `.reduce(f)` - reduceds the array to a single value, given the accumulator f  
+  * `.join(s)` - creates a string concatenation of the array, joined by the given string  
 
 
 ---
