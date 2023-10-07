@@ -223,6 +223,7 @@ General structionr:
   * **continiuouse values** `domain` and `range` are an array of two elements, the minimum and maximum values  
   * **descrete values** `domain` and `range` are an array of all possible values  
 * Returns a scale function which can be used to get the value in the range given a value in the domain `scale(domainValue) -> rangeValue`  
+* `<scaleInstance>.nice(count=10)` - Extends the input domain so that its endpoints fall onto numerically "round" values. Optional `count` argument is interpreted as a hint for the number of returned elements  
 
 <br>  
 
@@ -231,11 +232,14 @@ General structionr:
 **Square Root Scale:**  
 ![square root scale](images/square_root_scale.png)  
 **Log Scale:**  
+* Input must strictly be **positive OR negative, must NOT cross or include 0**  
 ![log scale](images/log_scale.png)  
 **Band Scale:**  
 ![band scale](images/band_scale.png)  
 **Point Scale:**  
 ![point scale](images/point_scale.png)  
+**Binning Scales:**  
+![binning scales](images/binning_scales.png)  
 
 <br>  
 
@@ -268,6 +272,8 @@ Then call the generator on a selection (axis DOM elements will be automatically 
 
 ##### Customise axes:  
 
+* In the following `axis` can be replaced with a scale object  
+  
 `axis.tickValues(valuesArray);`  
 * Sets values of ticks (axis interval labels)  
 
@@ -279,6 +285,18 @@ Then call the generator on a selection (axis DOM elements will be automatically 
 
 `axis.ticks(interval);`  
 * Set the time intervals between ticks on a time axis  
+  
+`axis.tickSize(size=6);`  
+* Sets size of both inner and outer (ends) tick marks  
+
+`axis.tickSizeInner(size=6);`  
+* Sets size of inner tick marks  
+
+`axis.tickSizeOutter(size=6);`  
+* Sets size of outter tick marks (2 at ends)  
+
+`axis.tickPadding(size=3)`  
+* Sets padding between tick marks and tick labels  
 
 ---  
 

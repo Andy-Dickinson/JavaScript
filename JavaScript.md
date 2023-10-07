@@ -477,6 +477,10 @@ OR
 ---  
 
 ### JSON (Java Script Object Notation)  
+[Format and validate JSON - RFC 7159 standardisation](https://jsonlint.com/)  
+[JSON editor - ECMA 262
+standardisation ](https://jsoneditoronline.org/)  
+
 * Standard for describing data - though not for general purpose (use for specific tasks)  
 * Often used to send and recieve data from web-apps  
 * Can **only** be in string format  
@@ -489,7 +493,7 @@ OR
   * Curly braces hold objects  
   * Square brackets hold arrays  
 
-* **Keys** must be **strings** in double quotes  
+* **Keys** must be **strings** in **double quotes**  
 * **Values** must be either:  
   * Strings  
   * Numbers  
