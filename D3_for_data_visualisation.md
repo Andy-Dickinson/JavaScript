@@ -235,6 +235,7 @@ General structionr:
 * Input must strictly be **positive OR negative, must NOT cross or include 0**  
 ![log scale](images/log_scale.png)  
 **Band Scale:**  
+* NOTE - padding MUST be less than 1
 ![band scale](images/band_scale.png)  
 **Point Scale:**  
 ![point scale](images/point_scale.png)  
