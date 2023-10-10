@@ -194,6 +194,73 @@ braces:
 * If there are no parameters, use empty parentheses:  
 `() => { statements }`  
 
+<br>  
+
+#### Callback functions:  
+* A function that is passed as the parameter of another function  
+* Aim is to all the callback execution somewhere in the second functions process:  
+![callback functions](./Images/callback_functions.png)  
+
+For example:  
+`var Arr = [2,3,4,5]`  
+`# Callback function`  
+`function myCallback(x){`  
+&emsp;`return x+1;`  
+`}`  
+`// array.map taks callback as argument`  
+`console.log(Arr.map(myCallback));`  
+
+Another example:  
+![callback ex2](./Images/callback_ex2.png)  
+* In this way, a function can be passed to another function allowing more flexibility on what the function can do  
+* NOTE - when function passed as argument, **<u>no parenthesis</u>**  
+* Typically used with **Asynchronous functions**  
+
+#### Asynchronous functions:  
+* Functions running in parallel ("I will finish later")  
+* With asynchronous programming, JavaScript programs can start long-running tasks, and continue running other tasks in paralell  
+* But difficult to write and difficult to debug  
+* Because of this, most modern asynchronous JavaScript methods don't use callbacks. Instead, in JavaScript, asynchronous programming is solved using Promises instead  
+  
+Asynchronous examples:  
+Waiting for a timeout -  
+![timeout](./Images/timeout.png)  
+<br>
+Waiting for intervals -  
+![intervals](./Images/intervals.png)  
+<br>
+
+#### Promises:  
+* "Producing code" is code that can take some time, "Consuming code" is code that must wait for the result  
+* A Promise is a JavaScript object that links producing code and consuming code  
+* Promise object contains both the producing code and calls to the consuming code  
+![promise](./Images/promise.png)  
+* states can be:
+  * Pending (working), result is undefined  
+  * Fulfilled, the result is a value  
+  * Rejected, the result is an error object  
+
+<br>  
+
+#### Asynchronous functions:  
+* Makes promises easier to write  
+![async](./Images/async.png)  
+
+Alternatively:  
+![async alt](./Images/async_alt.png)    
+
+**Await** keyword:  
+* Ensures program waits for completion  
+![await](./Images/await.png)  
+
+#### Anonymous functions:  
+The above function can also be written as anonymous function:  
+`var Arr = [2,3,4,5]`  
+`// Anonymous function goes directly`   
+`console.log(Arr.map(function(x){ return x+1}));`  
+* Doesn't have name, as only used once  
+* Can be difficult to debug  
+
 ---  
 
 #### Objects  
@@ -336,6 +403,10 @@ Can declare via other object types:
 ---  
 
 ### JavaScript / HTML Events  
+ 
+  
+* Messages sent throughout the application when something happens, e.g., a click or a keystroke  
+* **Event listeners** - attached to DOM elements, along with **event handlers** - callback functions describing what to do when the event is detected on those DOM elements  
 
 HTML events are **"things"** that happen to HTML elements. When JavaScript is used in HTML pages, JavaScript can **"react"** on these events  
 
@@ -346,7 +417,7 @@ Can also use within an anchor tag for example:
 `<p><a href="#" onClick="alert('Hello World');">Click Me</a></p>`  
 
 #### Common HTML Events  
-
+[Mozilla List of events](https://developer.mozilla.org/en-US/docs/Web/Events#event_listing)  
 [Full HTML DOM Events](https://www.w3schools.com/jsref/dom_obj_event.asp)  
 
 |Event|Description|

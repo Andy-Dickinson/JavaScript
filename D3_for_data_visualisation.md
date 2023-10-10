@@ -207,6 +207,71 @@ When updating a graph because data is only becoming available over time or becau
 
 ---  
 
+#### Events  
+
+[Mozilla List of events](https://developer.mozilla.org/en-US/docs/Web/Events#event_listing)   
+* Messages sent throughout the application when something happens, e.g., a click or a keystroke  
+* **Event listeners** - attached to DOM elements, along with **event handlers** - callback functions describing what to do when the event is detected on those DOM elements  
+* d3 `.on` method allows us to attach event listeners and handlers to our data-bound DOM elements. **1st parameter: type of event, 2nd parameter: event callback**  
+  * Event callback- **1st parameter: event object, 2nd parameter: selection datum**  
+![d3 on](./Images/d3_on.png)  
+
+
+* The target of the event (event.target) can be selected to make changes to that element alone  
+* The d3.pointer method can be used (d3.pointer(event)) to calculate coordinate of the event relative to the targer element  
+
+---  
+
+#### Transitions  
+* Like selections - but interfaces to manipulate elements based on data  
+* Specifically to support **interpolated changes** (rather than instantaneous)  
+* Data binding and element creation are not supported by transitions - need to use selections first  
+* A selection can be transformed into a transition using the `.transition()` method  
+![transition](./Images/transition.png)  
+
+* Create a transition template using `d3.transition()`  
+  * Useful when you need to apply the same transition on several selections  
+  * Transitions can get custom delays (`.delay()`) and durations (`.duration()`)  
+![transition template](./Images/transition_template.png)  
+
+---  
+
+#### Tooltips  
+
+Not part of D3, but can use 3rd party libraries:  
+**Popper** to compute the position of popovers  
+**Tippy** to generate and render the tooltips  
+`<head>`  
+&emsp;`<meta charset="UTF-8">`  
+&emsp;`<meta http-equiv="X-UA-Compatible" content="IE=edge">`  
+&emsp;`<meta name="viewport" content="width=device-width, initial-scale=1.0">`  
+&emsp;`<title>My Page</title>`  
+
+&emsp;`<link rel="stylesheet" href="styles/main.css">`  
+    
+&emsp;`<script src="libs/d3.v7.min.js"></script>`  
+&emsp;`<script src="libs/popper.v2.min.js"></script>`  
+&emsp;`<script src="libs/tippy.v6.min.js"></script>`  
+`</head>`  
+
+**Tippy:**  
+* Creates floating div elements that will display when other elements are hovered over, directly next to those  
+* Can set generic options, including the content of the tooltips:  
+&emsp; `let tooltips = tippy(nodes, {content:"Default content"});`  
+* Or prepare elements individually, setting attributes for their tooltips:  
+&emsp; `<div id="app">`  
+&emsp;&emsp; `<p data-tippy-content="More text here">text</p>`  
+&emsp;&emsp; `<p data-tippy-content="Different text here">text2</p>`  
+&emsp; `</div>`  
+
+* With element specific tooltip attributes, can use data-bound D3 selections:  
+![tippy](./Images/tippy.png)  
+  * In example, tippy gets applied to the nodes (actual DOM elements) corresponding to the bars. Content of tooltips is set individually for each bar, using the attribute data-tippy-content  
+
+
+
+---  
+
 #### D3 Scale  
 
 [D3 Scale Documentation](https://github.com/d3/d3-scale)  
